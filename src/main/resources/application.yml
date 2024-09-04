@@ -1,0 +1,21 @@
+#spring.application.name=Nowgram
+
+
+spring:
+  config:
+    import: security-information.yml
+  application:
+    name: Nowgram
+  thymeleaf:
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/nowgram
+    username: root
+    password: ${mysql.password}
+  mvc:
+    static-path-pattern: /static/**
+
+
+mybatis:
+  mapper-locations: mappers/*Mapper.xml
