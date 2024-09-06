@@ -10,11 +10,11 @@ public class UserController {
 
 	@GetMapping("/login-view")
 	public String inputLogin() {
-		return"";
+		return"user/login";
 	}
 
 	@GetMapping("/join-view")
 	public String inputJoin() {
-		return"";
+		return"user/join";
 	}
 }

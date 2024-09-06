@@ -1,1 +1,31 @@
 @charset "UTF-8";
+
+#warp{
+	width: 1200px;
+	height: 800px;
+	margin: 0 auto;
+}
+
+.logoFont{
+	height: 150px;
+	font-size: 75px;
+	font-family: 'BagelFatOne-Regular';
+}
+
+.logo{
+	height: 100px;
+	font-size: 50px;
+	font-family: 'BagelFatOne-Regular';
+}
+
+.mauva{
+	background: #8E84E7;
+	color: white;
+}
+
+@font-face {
+    font-family: 'BagelFatOne-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_JAMO@1.0/BagelFatOne-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
