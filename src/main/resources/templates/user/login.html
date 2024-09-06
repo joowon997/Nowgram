@@ -1,48 +1,29 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Nowgram</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-	
-	<div id="warp">
-		<header>
-		</header>
-		<section class="d-flex justify-content-center">
-			<aside class="col-6">
-				<img width="550px" alt="로고" src="https://cdn.pixabay.com/photo/2013/07/12/15/55/polaroid-150581_1280.png">
-			</aside>
-			<article class="col-5">
-				<div class="border">
-					<div class="logoFont d-flex justify-content-center align-items-center">Nowgram</div>
-					<div class="p-5">
-						<input type="text" placeholder="Phone OR Email" class="form-control">
-						<input type="password" placeholder="password" class="form-control mt-3">
-						<button type="button" class="btn btn-block mauva my-3">Login</button>
-						<hr>
-						<div class="d-flex justify-content-center px-4">
-							<div class="mr-5">아이디를 잊으셨나요??</div>
-							<a href="#">아이디 찾기</a>
-						</div>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/default}">
+		
+	<section layout:fragment="contents" class="d-flex justify-content-center">
+		<aside class="col-6">
+			<img width="550px" alt="로고" src="https://cdn.pixabay.com/photo/2013/07/12/15/55/polaroid-150581_1280.png">
+		</aside>
+		<article class="col-5">
+			<div class="border">
+				<div class="logoFont d-flex justify-content-center align-items-center">Nowgram</div>
+				<div class="px-5 py-4">
+					<input type="text" placeholder="Phone OR Email" class="form-control">
+					<input type="password" placeholder="password" class="form-control mt-3">
+					<button type="button" class="btn btn-block mauva my-3">Login</button>
+					<hr>
+					<div class="d-flex justify-content-center">
+						<div class="mr-5">아이디를 잊으셨나요??</div>
+						<a href="#">아이디 찾기</a>
 					</div>
 				</div>
-				<div class=" border d-flex justify-content-center p-3 mt-2">
-					<div class="mr-5">계정이 없으신가요??</div>
-					<a href="#">회원가입</a>
-				</div>
-			</article>
-		</section>
-		<footer class="d-flex justify-content-center align-items-center text-secondary mt-5">
-			Copyright 2024. Nowgram nowjoo all rights reserved
-		</footer>
-	</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-</body>
-</html>
+			</div>
+			<div class=" border d-flex justify-content-center p-3 mt-2">
+				<div class="mr-5">계정이 없으신가요??</div>
+				<a href="/nowgram/user/join-view">회원가입</a>
+			</div>
+		</article>
+	</section>
