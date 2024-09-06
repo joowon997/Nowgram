@@ -8,39 +8,21 @@
 				<div class="border">
 					<div class="logoFont d-flex justify-content-center align-items-center">join</div>
 					<div class="px-5 pt-4">
-						<label>ID OR Email</label>					
-						<input type="text" placeholder="ID" class="form-control mb-1">
-						<label>Password</label>					
-						<input type="password" placeholder="password" class="form-control mb-1">
-						<label>Password</label>					
-						<input type="password" placeholder="PasswordConfirm" class="form-control mb-1">
 						<label>Name</label>					
 						<input type="text" placeholder="Name" class="form-control mb-1">
-						<label>Birthday</label>					
-						<input type="text" placeholder="0000/00/00" class="form-control mb-1" id="inputBirthday">
-						<label>Email</label>					
-						<input type="text" placeholder="Email" class="form-control mb-1">
+						<label>Birthdate</label>					
+						<input type="text" placeholder="0000/00/00" class="form-control mb-1">
 						<label>Phone</label>					
 						<input type="text" placeholder="010-0000-0000" class="form-control mb-1">
 						<button type="button" class="btn btn-block mauva mt-4">가입하기</button>
 						<hr>
 					</div>
 					<div class="d-flex justify-content-center px-4 m-4">
-						<div class="mr-5">아이디가 있으신가요??</div>
+						<div class="mr-5">아이디가 기억나시나요??</div>
 						<a href="/nowgram/user/login-view">로그인 하기</a>
 					</div>
 				</div>
 			</article>
 		</section>
-		
-		<script layout:fragment="script">
-			$(document).ready(function(){
-				
-				$("#inputBirthday").datepicker({
-					dateFormat:"yy년 mm월 dd일"
-				});	
-				
-			});
-		</script>
 		
 </html>

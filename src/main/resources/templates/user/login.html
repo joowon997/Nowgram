@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" 
 		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-		layout:decorate="~{layouts/default}">
+		layout:decorate="~{layouts/noheader}">
 		
-	<section layout:fragment="contents" class="d-flex justify-content-center">
+	<section layout:fragment="contents" class="d-flex justify-content-center mt-5 pt-5">
 		<aside class="col-6">
 			<img width="550px" alt="로고" src="https://cdn.pixabay.com/photo/2013/07/12/15/55/polaroid-150581_1280.png">
 		</aside>
 		<article class="col-5">
-			<div class="border">
+			<div class="border pt-3 pb-1">
 				<div class="logoFont d-flex justify-content-center align-items-center">Nowgram</div>
 				<div class="px-5 py-4">
-					<input type="text" placeholder="Phone OR Email" class="form-control">
+					<input type="text" placeholder="ID OR Email" class="form-control">
 					<input type="password" placeholder="password" class="form-control mt-3">
 					<button type="button" class="btn btn-block mauva my-3">Login</button>
 					<hr>
-					<div class="d-flex justify-content-center">
+					<div class="d-flex justify-content-center mt-2">
 						<div class="mr-5">아이디를 잊으셨나요??</div>
 						<a href="#">아이디 찾기</a>
 					</div>

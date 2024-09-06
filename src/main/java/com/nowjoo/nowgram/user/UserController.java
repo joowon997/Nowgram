@@ -17,4 +17,9 @@ public class UserController {
 	public String inputJoin() {
 		return"user/join";
 	}
+
+	@GetMapping("/find-view")
+	public String inputfind() {
+		return"user/find";
+	}
 }
