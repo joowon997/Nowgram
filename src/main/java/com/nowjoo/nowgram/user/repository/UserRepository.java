@@ -1,5 +1,7 @@
 package com.nowjoo.nowgram.user.repository;
 
+import java.time.LocalDate;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,9 +12,10 @@ public interface UserRepository {
 			@Param("loginId") String loginId
 			,@Param("password") String password
 			,@Param("name") String name
-			,@Param("birthday") String birthday
+			,@Param("birthday") LocalDate birthday
 			,@Param("email") String email
 			,@Param("phoneNumber") String phoneNumber
 			);
 	
+	public int selectCountByLoginId(@Param("loginId") String loginId);
 }
