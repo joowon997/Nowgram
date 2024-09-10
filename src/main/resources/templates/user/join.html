@@ -60,11 +60,11 @@
 						, data:{"loginId":id}
 						, success:function(data){
 							if(data.idDuplicate){
-								$("#availableText").addClass("d-none");
-								$("#duplicateText").removeClass("d-none");
-							}else{
 								$("#availableText").removeClass("d-none");
 								$("#duplicateText").addClass("d-none");
+							}else{
+								$("#availableText").addClass("d-none");
+								$("#duplicateText").removeClass("d-none");
 							}
 						}
 						, error:function(){
