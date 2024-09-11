@@ -18,6 +18,14 @@
 	font-family: 'BagelFatOne-Regular';
 }
 
+.timeline{
+	height: 600px;
+}
+
+.timelineUser{
+	height: 30px;
+}
+
 .mauva{
 	background: #8E84E7;
 	color: white;
