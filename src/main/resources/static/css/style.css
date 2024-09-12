@@ -31,6 +31,13 @@
 	color: white;
 }
 
+.nickname{
+	font-size: 25px;
+}
+.more{
+	font-size: 35px;
+}
+
 @font-face {
     font-family: 'BagelFatOne-Regular';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_JAMO@1.0/BagelFatOne-Regular.woff2') format('woff2');

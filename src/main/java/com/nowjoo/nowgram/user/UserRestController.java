@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nowjoo.nowgram.user.domain.User;
 import com.nowjoo.nowgram.user.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/nowgram/user")
@@ -22,6 +25,32 @@ public class UserRestController {
 	public UserRestController(UserService userService) {
 		this.userService = userService;
 	} 
+	
+	// 로그인 기능
+	@PostMapping("/login")
+	public Map<String, String> userLogin(
+			@RequestParam("loginId") String loginId
+			,@RequestParam("password") String password
+			,HttpSession session){
+		
+		User user = userService.getUser(loginId, password);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(user != null) {
+			resultMap.put("result", "success");
+			
+			// 사용자 이름 및 정보
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("userName", user.getLoginId());
+			
+		}else {
+			resultMap.put("result", "fail");
+		}
+	
+		return resultMap;
+		}
+	
 	// 회원가입 기능
 	@PostMapping("/join")
 	public Map<String, String> adduser(

@@ -11,9 +11,11 @@
 			<div class="border pt-3 pb-1">
 				<div class="logoFont d-flex justify-content-center align-items-center">Nowgram</div>
 				<div class="px-5 py-4">
-					<input type="text" placeholder="ID OR Email" class="form-control">
-					<input type="password" placeholder="password" class="form-control mt-3">
-					<button type="button" class="btn btn-block mauva my-3">Login</button>
+					<form id="loginForm">
+					<input type="text" placeholder="ID OR Email" class="form-control" id="inputLoginId">
+					<input type="password" placeholder="password" class="form-control mt-3" id="inputLoginPassword">
+					<button type="submit" class="btn btn-block mauva my-3" id="loginBtn">Login</button>
+					</form>
 					<hr>
 					<div class="d-flex justify-content-center mt-2">
 						<div class="mr-5">아이디를 잊으셨나요??</div>
@@ -27,3 +29,48 @@
 			</div>
 		</article>
 	</section>
+
+	<script layout:fragment="script">
+	$(document).ready(function(){
+		
+		// 로그인 기능
+		$("#loginForm").on("submit", function(e){
+			// 기본기능 실행방지
+			e.preventDefault();
+			
+			// 변수 설정
+			let id = $("#inputLoginId").val();
+			let password = $("#inputLoginPassword").val();
+		
+			// 유효성 검사
+			if(id == ""){
+				alert("아이디를 입력하세요");
+				return;
+			}
+			if(password == ""){
+				alert("비밀번호를 입력하세요");
+				return;
+			}
+			
+			// ajax통신
+			$.ajax({
+				type:"post"
+				, url: "/nowgram/user/login"
+				, data: {"loginId":id, "password":password}
+				, success: function(data){
+					if(data.result == "success"){
+						location.href = "/nowgram/post/timeline-view";
+					}else{
+						alert("아이디 비밀번호를 확인해 주세요");
+					}
+					
+				}
+				, error: function(){
+					alert("로그인 에러");
+				}
+			});
+		});
+		
+	});
+		
+	</script>

@@ -1,4 +1,10 @@
 <!DOCTYPE html>
-	<header>
+<html xmlns:th="http://www.thymeleaf.org">	
+	<header class="d-flex align-items-center justify-content-between">
 				<div class="logo">Nowgram</div>
+				
+				<div th:if="${session.userId != null}" class="mr-4">
+				<span th:text="${session.userName}" class="mr-2">사용자</span><a href="/memo/user/logout">로그아웃</a>
+				</div>
 			</header>
+</html>

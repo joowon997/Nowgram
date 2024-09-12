@@ -16,8 +16,8 @@
 							<button class="btn mauva input-group-btn" id="isDuplicateBtn">중복확인</button>
 							</div>
 						</div>
-						<div class="small d-none" id="availableText">사용 가능한 ID 입니다</div>
-						<div class="small d-none" id="duplicateText">중복된 ID 입니다</div>
+						<div class="small text-success d-none" id="availableText">사용 가능한 ID 입니다</div>
+						<div class="small text-danger d-none" id="duplicateText">중복된 ID 입니다</div>
 						
 						<label>Password</label>					
 						<input type="password" placeholder="password" class="form-control mb-1" id="inputPassword">
@@ -45,6 +45,20 @@
 		<script layout:fragment="script">
 			$(document).ready(function(){
 				
+				// 중복확인 여부
+				var checkDuplicate = false;
+				// 중복여부
+				var isDuplicateId = true;
+				
+				$("#inputId").on("input",function(){
+					// 중복확인 기능 초기화
+					checkDuplicate = false;
+					isDuplicateId = true;
+					
+					$("#availableText").addClass("d-none");
+					$("#duplicateText").addClass("d-none");
+				});
+				
 				//중복확인 기능
 				$("#isDuplicateBtn").on("click",function(){
 					let id = $("#inputId").val();
@@ -59,12 +73,14 @@
 						, url:"/nowgram/user/duplicate-id"
 						, data:{"loginId":id}
 						, success:function(data){
-							if(data.idDuplicate){
-								$("#availableText").removeClass("d-none");
-								$("#duplicateText").addClass("d-none");
-							}else{
+							checkDuplicate = true;
+							isDuplicateId = data.idDuplicate;
+							if(data.isDuplicate){
 								$("#availableText").addClass("d-none");
 								$("#duplicateText").removeClass("d-none");
+							}else{
+								$("#availableText").removeClass("d-none");
+								$("#duplicateText").addClass("d-none");
 							}
 						}
 						, error:function(){
@@ -90,6 +106,19 @@
 						alert("아이디를 입력하세요");
 						return;
 					}
+					
+					// 중복진행을 진행하지 않은 경우
+					if(!checkDuplicate){
+						alert("아이디 중복확인을 해주세요");
+						return;
+					}
+
+					// 아이디가 중복된 경우
+					if(isDuplicateId){
+						alert("아이디 중복확인을 해주세요");
+						return;
+					}
+					
 					if(password == ""){
 						alert("비밀번호를 입력하세요");
 						return;

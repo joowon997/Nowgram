@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nowjoo.nowgram.common.hash.HashingEncoder;
 import com.nowjoo.nowgram.common.hash.MD5HashingEncoder;
+import com.nowjoo.nowgram.user.domain.User;
 import com.nowjoo.nowgram.user.repository.UserRepository;
 
 @Service
@@ -21,6 +22,14 @@ public class UserService {
 	public UserService(UserRepository userRepository, @Qualifier("sha256Hashing") HashingEncoder encoder) {
 		this.userRepository = userRepository;
 		this.encoder = encoder;
+	}
+	
+	public User getUser(String loginId, String password) {
+
+		String encryptPassword = encoder.encode(password);
+		
+		return userRepository.selectUser(loginId, encryptPassword);
+		
 	}
 	
 	public int adduser(
