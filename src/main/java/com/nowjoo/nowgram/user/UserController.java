@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
+
 @RequestMapping("/nowgram/user")
 @Controller
 public class UserController {
@@ -21,5 +23,19 @@ public class UserController {
 	@GetMapping("/find-view")
 	public String inputfind() {
 		return"user/find";
+	}
+
+	@GetMapping("/profil-view")
+	public String userProfil() {
+		return"user/profil";
+	}
+	
+	// 로그아웃 기능
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("userId");
+		session.removeAttribute("userName");
+		
+		return "redirect:/nowgram/user/login-view";
 	}
 }

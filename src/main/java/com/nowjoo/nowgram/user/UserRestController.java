@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nowjoo.nowgram.user.domain.User;
 import com.nowjoo.nowgram.user.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -25,6 +26,7 @@ public class UserRestController {
 	public UserRestController(UserService userService) {
 		this.userService = userService;
 	} 
+	
 	
 	// 로그인 기능
 	@PostMapping("/login")

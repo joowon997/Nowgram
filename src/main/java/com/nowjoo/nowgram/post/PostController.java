@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PostController {
 
 	@GetMapping("/timeline-view")
-	public String timeline() {
+	public String timelineView() {
 		return"post/timeline";
 	}
 	
+	@GetMapping("/create-view")
+	public String createView() {
+		return"post/create";
+	}
 }

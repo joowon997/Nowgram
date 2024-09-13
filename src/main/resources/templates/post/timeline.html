@@ -4,22 +4,37 @@
 		layout:decorate="~{layouts/default}">
 		
 		<section layout:fragment="contents" class="d-flex justify-content-center">
-			<div class="timeline col-6 border p-0">
-				<div class="timelineUser">
-					<div class="border-bottom">
-						<div class="d-flex justify-content-between align-items-center my-1 mx-3">
-							<div class="d-flex align-items-center">
-								<img class="rounded-circle" width="40px" height="40px" alt="프로필 사진" src="https://cdn.pixabay.com/photo/2024/06/17/14/58/school-8835808_640.jpg">
-								<span class="nickname ml-2">user</span>
-							</div>
-							<a class="more font-weight-bold text-dark">···</a>
-						</div>
+			<div class="timeline border">
+				<!-- 게시자 -->
+				<div class="d-flex justify-content-between align-items-center my-1 mx-3">
+					<div class="d-flex align-items-center">
+						<img class="rounded-circle" width="40px" height="40px" alt="프로필 사진" src="https://cdn.pixabay.com/photo/2024/06/17/14/58/school-8835808_640.jpg">
+						<span class="nickname ml-2">user</span>
 					</div>
-					<div class="d-flex justify-content-center mt-2">
-						<img width="580px" alt="게시물이미지" src="https://cdn.pixabay.com/photo/2024/08/18/14/34/folkstone-8978132_1280.jpg">
-					</div>
+					<a class="more font-weight-bold text-dark">···</a>
 				</div>
-				
+				<!-- /게시자 -->
+				<!-- 게시물 -->
+				<div class="d-flex justify-content-center">
+					<img width="600px" alt="게시물이미지" src="https://cdn.pixabay.com/photo/2024/08/18/14/34/folkstone-8978132_1280.jpg">
+				</div>
+				<div class="contents mx-3 mt-2">
+					<h3>
+						<i class="bi bi-heart"></i>
+						<i class="bi bi-heart-fill text-danger d-none"></i>
+						<i class="bi bi-chat-left"></i>
+					</h3>
+					<div>좋아요 00개</div>
+					<span class="font-weight-bold mr-4">user1</span>
+					<span>게시물 내용</span>
+				</div>
+				<!-- /게시물 -->
+				<!-- 댓글 -->
+				<div class="mx-3 mt-2">
+					<div class="text-secondary small">댓글 00개 모두보기</div>
+					<textarea rows="2" class="form-control my-2">댓글 달기</textarea>
+				</div>
+				<!-- /댓글 -->
 			</div>
 		</section>
 		

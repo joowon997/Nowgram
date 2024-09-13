@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/default}">
+		
+		<section layout:fragment="contents" class="d-flex justify-content-center">
+			<div>
+				<!-- 게시물 사진 추가 -->
+				<div class="timeline border">
+					<input type="file" class="form-control">
+					<div class="imagePlus d-flex justify-content-center align-items-center">
+						<h1><i class="bi bi-plus-lg"></i></h1> 
+					</div>
+					<img class="d-none" width="600px" alt="선택된 사진" src="https://cdn.pixabay.com/photo/2024/09/05/17/31/moutains-9025523_640.jpg">
+				</div>			
+				<!-- /게시물 사진 추가 -->
+				<!-- 게시물 코멘트-->
+				<div class="border mt-3">
+					<textarea rows="5" class="form-control"></textarea>
+				</div>
+				<!-- 게시물 코멘트-->
+				
+				<button class="btn btn-block mauva mt-3">올리기</button>
+			</div>
+		</section>
+		
+</html>
