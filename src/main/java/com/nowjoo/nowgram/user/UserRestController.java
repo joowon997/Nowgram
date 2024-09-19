@@ -2,15 +2,18 @@ package com.nowjoo.nowgram.user;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nowjoo.nowgram.user.DTO.FindDTO;
 import com.nowjoo.nowgram.user.domain.User;
 import com.nowjoo.nowgram.user.service.UserService;
 
@@ -27,6 +30,19 @@ public class UserRestController {
 		this.userService = userService;
 	} 
 	
+	// 아이디 찾기 기능
+	@GetMapping("/find")
+	public Map<String, String> findUser(
+			@RequestParam("name") String name
+			, @RequestParam("birthday") @DateTimeFormat(pattern = "yyyy년 M월 d일") LocalDate birthday
+			, @RequestParam("phoneNumber") String phoneNumber
+			){
+		List<FindDTO> resultList = userService.findUser(name, birthday, phoneNumber);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		return resultMap;
+	}
 	
 	// 로그인 기능
 	@PostMapping("/login")

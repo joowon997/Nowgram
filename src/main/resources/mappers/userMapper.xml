@@ -4,6 +4,19 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.nowjoo.nowgram.user.repository.UserRepository">
+	
+	<select id="findUser" parameterType="map" 
+	resultType="com.nowjoo.nowgram.user.DTO.FindDTO">
+	SELECT
+		`loginId`
+	FROM
+		`user`
+	WHERE
+		`name` = #{name}
+		AND `birthday` = #{birthday}
+		AND `phoneNumber` = #{phoneNumber}
+	</select>
+	
 	<insert id="insertUser" parameterType="map">
 	INSERT INTO
 		`user`

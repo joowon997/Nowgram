@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostService {
 
-	public int addPosr() {
+	public int addPost() {
 		
 		return 0;
 	}

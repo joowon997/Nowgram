@@ -1,12 +1,14 @@
 package com.nowjoo.nowgram.user.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.nowjoo.nowgram.common.hash.HashingEncoder;
 import com.nowjoo.nowgram.common.hash.MD5HashingEncoder;
+import com.nowjoo.nowgram.user.DTO.FindDTO;
 import com.nowjoo.nowgram.user.domain.User;
 import com.nowjoo.nowgram.user.repository.UserRepository;
 
@@ -24,6 +26,11 @@ public class UserService {
 		this.encoder = encoder;
 	}
 	
+	public List<FindDTO> findUser(String name, LocalDate birthday, String phoneNumber) {
+		
+		return userRepository.findUser(name, birthday, phoneNumber);
+	}
+	
 	public User getUser(String loginId, String password) {
 
 		String encryptPassword = encoder.encode(password);
@@ -32,6 +39,7 @@ public class UserService {
 		
 	}
 	
+	// 회원가입 기능
 	public int adduser(
 			String loginId
 			,String password
@@ -46,6 +54,7 @@ public class UserService {
 		return userRepository.insertUser(loginId, encryptPassword, name, birthday, email, phoneNumber);
 	}
 	
+	// 중복확인 기능
 	public boolean isDuplicateId(String loginId){
 		int count = userRepository.selectCountByLoginId(loginId);
 		
