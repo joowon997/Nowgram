@@ -3,20 +3,20 @@
 		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		layout:decorate="~{layouts/default}">
 		
-		<section layout:fragment="contents" class="d-flex justify-content-center">
+		<section layout:fragment="contents" class="d-flex justify-content-center mb-3" th:each="post:${timeline}">
 			<div class="timeline border">
 				<!-- 게시자 -->
 				<div class="d-flex justify-content-between align-items-center my-1 mx-3">
 					<div class="d-flex align-items-center">
 						<img class="rounded-circle" width="40px" height="40px" alt="프로필 사진" src="https://cdn.pixabay.com/photo/2024/06/17/14/58/school-8835808_640.jpg">
-						<span class="nickname ml-2">user</span>
+						<span class="nickname ml-2" th:text="${post.loginId}">user</span>
 					</div>
 					<a class="more font-weight-bold text-dark">···</a>
 				</div>
 				<!-- /게시자 -->
 				<!-- 게시물 -->
 				<div class="d-flex justify-content-center">
-					<img width="600px" alt="게시물이미지" src="https://cdn.pixabay.com/photo/2024/08/18/14/34/folkstone-8978132_1280.jpg">
+					<img width="600px" height="400px" alt="게시물이미지" th:src="${post.imagePath}" src="https://cdn.pixabay.com/photo/2024/08/18/14/34/folkstone-8978132_1280.jpg">
 				</div>
 				<div class="contents mx-3 mt-2">
 					<h3>
@@ -25,8 +25,8 @@
 						<i class="bi bi-chat-left"></i>
 					</h3>
 					<div>좋아요 00개</div>
-					<span class="font-weight-bold mr-4">user1</span>
-					<span>게시물 내용</span>
+					<span class="font-weight-bold mr-4" th:text="${post.loginId}">user1</span>
+					<span th:text="${post.contents}">게시물 내용</span>
 				</div>
 				<!-- /게시물 -->
 				<!-- 댓글 -->
@@ -41,7 +41,15 @@
 		<script layout:fragment="script">
 		$(document).ready(function(){
 			
-			
+			$("#logoIcon").on("click", function(){
+				location.href = "/nowgram/post/timeline-view";
+			});
+			$("#createIcon").on("click", function(){
+				location.href = "/nowgram/post/create-view";
+			});
+			$("#profilIcon").on("click", function(){
+				location.href = "/nowgram/user/profil-view";
+			});
 			
 		});
 		</script>

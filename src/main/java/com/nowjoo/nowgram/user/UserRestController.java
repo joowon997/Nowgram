@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nowjoo.nowgram.user.DTO.FindDTO;
 import com.nowjoo.nowgram.user.domain.User;
@@ -31,15 +32,37 @@ public class UserRestController {
 	} 
 	
 	// 아이디 찾기 기능
-	@GetMapping("/find")
-	public Map<String, String> findUser(
-			@RequestParam("name") String name
-			, @RequestParam("birthday") @DateTimeFormat(pattern = "yyyy년 M월 d일") LocalDate birthday
-			, @RequestParam("phoneNumber") String phoneNumber
-			){
-		List<FindDTO> resultList = userService.findUser(name, birthday, phoneNumber);
+//	@GetMapping("/find")
+//	public Map<String, String> findUser(
+//			@RequestParam("name") String name
+//			, @RequestParam("birthday") @DateTimeFormat(pattern = "yyyy년 M월 d일") LocalDate birthday
+//			, @RequestParam("phoneNumber") String phoneNumber
+//			){
+//		List<FindDTO> resultList = userService.findUser(name, birthday, phoneNumber);
+//		
+//		Map<String, String> resultMap = new HashMap<>();
+//		
+//		return resultMap;
+//	}
+	
+	// 프로필 수정기능
+	@PostMapping("/profil")
+	public Map<String, String> creatProfil(
+			@RequestParam("nickname") String nickname
+			, @RequestParam("imageFile") MultipartFile file
+			, HttpSession session){
+		
+		int userId = (Integer)session.getAttribute("userId");
+		
+		int count = userService.addProfil(userId, nickname, file);
 		
 		Map<String, String> resultMap = new HashMap<>();
+		
+		if (count == 1) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
 		
 		return resultMap;
 	}

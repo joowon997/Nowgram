@@ -7,21 +7,75 @@
 			<div>
 				<!-- 게시물 사진 추가 -->
 				<div class="timeline border">
-					<input type="file" class="form-control">
+					<input type="file" class="form-control" id="imageInput">
 					<div class="imagePlus d-flex justify-content-center align-items-center">
-						<h1><i class="bi bi-plus-lg"></i></h1> 
+						<h1><i class="bi bi-plus-lg" id="selectIcon"></i></h1> 
 					</div>
 					<img class="d-none" width="600px" alt="선택된 사진" src="https://cdn.pixabay.com/photo/2024/09/05/17/31/moutains-9025523_640.jpg">
 				</div>			
 				<!-- /게시물 사진 추가 -->
 				<!-- 게시물 코멘트-->
 				<div class="border mt-3">
-					<textarea rows="5" class="form-control"></textarea>
+					<textarea rows="5" class="form-control" id="commentInput"></textarea>
 				</div>
 				<!-- 게시물 코멘트-->
-				
-				<button class="btn btn-block mauva mt-3">올리기</button>
+				<button class="btn btn-block mauva mt-3" id="createBtn">올리기</button>
 			</div>
 		</section>
 		
+		<script layout:fragment="script">
+		$(document).ready(function(){
+			
+			$("#createBtn").on("click", function(){
+				let comment = $("#commentInput").val();
+				let file = $("#imageInput")[0].files[0];
+				
+				if(comment == ""){
+					alert("내용를 입력하세요");
+					return;
+				}
+				
+				// ajax 통신
+				let formData = new FormData();
+				formData.append("contents", comment);
+				formData.append("imageFile", file);
+				
+				$.ajax({
+					type:"post"
+					, url: "/nowgram/post/create"
+					, data: formData
+					, enctype: "multipart/form-data" // 파일 업로드 필수
+					, processData:false // 파일 업로드 필수
+					, contentType:false // 파일 업로드 필수
+					, success:function(data){
+						if(data.result == "success"){
+							location.href = "/nowgram/post/timeline-view";
+						} else{
+							alert("메모 입력 실패!!");
+						}
+					}
+					, erorr: function(){
+						alert("메모 입력 에러!!");
+					}
+				})
+			});
+			
+			
+			$("#selectIcon").on("click", function(){
+				$("#imageInput").click();
+			});
+
+			// 페이지 이동
+			$("#logoIcon").on("click", function(){
+				location.href = "/nowgram/post/timeline-view";
+			});
+			$("#createIcon").on("click", function(){
+				location.href = "/nowgram/post/create-view";
+			});
+			$("#profilIcon").on("click", function(){
+				location.href = "/nowgram/user/profil-view";
+			});
+			
+		});
+		</script>
 </html>

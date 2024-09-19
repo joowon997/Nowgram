@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.nowjoo.nowgram.common.FileManager;
 import com.nowjoo.nowgram.common.hash.HashingEncoder;
 import com.nowjoo.nowgram.common.hash.MD5HashingEncoder;
 import com.nowjoo.nowgram.user.DTO.FindDTO;
@@ -26,11 +28,15 @@ public class UserService {
 		this.encoder = encoder;
 	}
 	
-	public List<FindDTO> findUser(String name, LocalDate birthday, String phoneNumber) {
+	//프로필 기능
+	public int addProfil(int userId, String nickname, MultipartFile file) {
 		
-		return userRepository.findUser(name, birthday, phoneNumber);
+		String urlPath = FileManager.saveFile(userId, file);
+	
+		return userRepository.insertProfil(userId, nickname, urlPath);
 	}
 	
+	// 로그인 기능
 	public User getUser(String loginId, String password) {
 
 		String encryptPassword = encoder.encode(password);
@@ -63,5 +69,9 @@ public class UserService {
 		}else {
 			return true;
 		}
+	}
+	
+	public User getUserById(int id) {
+		return userRepository.selectUserById(id);
 	}
 }

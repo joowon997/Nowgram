@@ -18,10 +18,21 @@ public interface UserRepository {
 			, @Param("phoneNumber") String phoneNumber
 			);
 	
+	
+	public User selectUserById(
+			@Param("id") int id);
+	
 	// 로그인
 	public User selectUser(
 			@Param("loginId") String loginId
 			,@Param("password") String password);
+
+	// 프로필 설정
+	public int insertProfil(
+			@Param("userId") int userId
+			, @Param("nickname") String nickname
+			, @Param("imagePath") String imagePath
+			);
 	
 	// 회원가입
 	public int insertUser(

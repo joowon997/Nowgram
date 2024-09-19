@@ -10,7 +10,9 @@
 					<div class="m-3 d-flex justify-content-between align-items-center">
 						<img class="rounded-circle mr-3" width="120px" height="120px"
 						 alt="선택된 사진" src="https://cdn.pixabay.com/photo/2024/09/05/17/31/moutains-9025523_640.jpg">
+						<input type="file" class="d-none">
 						<span class="display-4">user</span>
+						<input class="nickname d-none" style="border: none; background: transparent;" placeholder="user">
 					</div>
 					<div class="mr-5 pr-5">
 						<div class="d-flex justify-content-center">게시물</div>
@@ -27,5 +29,21 @@
 				<!-- /사용자의 게시물-->
 			</div>
 		</section>
+		
+		<script layout:fragment="script">
+		$(document).ready(function(){
+			
+			$("#logoIcon").on("click", function(){
+				location.href = "/nowgram/post/timeline-view";
+			});
+			$("#createIcon").on("click", function(){
+				location.href = "/nowgram/post/create-view";
+			});
+			$("#profilIcon").on("click", function(){
+				location.href = "/nowgram/user/profil-view";
+			});
+			
+		});
+		</script>
 		
 </html>
