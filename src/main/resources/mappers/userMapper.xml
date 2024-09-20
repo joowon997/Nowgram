@@ -35,6 +35,22 @@
 		AND `phoneNumber` = #{phoneNumber}
 	</select>
 	
+	<select id="selectProfilByUserId" parameterType="int" 
+	resultType="com.nowjoo.nowgram.user.domain.Profil">
+		SELECT
+			`id`
+			, `userId`
+			, `nickname`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`profil`
+		WHERE
+			`userId` = #{userId}
+		
+	</select>
+	
 	<insert id="insertProfil" parameterType="map">
 		INSERT INTO
 		`profil`

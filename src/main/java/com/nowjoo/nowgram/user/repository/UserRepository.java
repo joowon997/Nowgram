@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.nowjoo.nowgram.user.DTO.FindDTO;
+import com.nowjoo.nowgram.user.domain.Profil;
 import com.nowjoo.nowgram.user.domain.User;
 
 @Mapper
@@ -21,6 +22,10 @@ public interface UserRepository {
 	
 	public User selectUserById(
 			@Param("id") int id);
+
+	public Profil selectProfilByUserId(
+			@Param("userId") int userid);
+	
 	
 	// 로그인
 	public User selectUser(

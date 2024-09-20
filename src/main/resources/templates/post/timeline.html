@@ -20,7 +20,7 @@
 				</div>
 				<div class="contents mx-3 mt-2">
 					<h3>
-						<i class="bi bi-heart"></i>
+						<i class="bi bi-heart like-btn" th:data-post-id="${post.postId}"></i>
 						<i class="bi bi-heart-fill text-danger d-none"></i>
 						<i class="bi bi-chat-left"></i>
 					</h3>
@@ -41,6 +41,13 @@
 		<script layout:fragment="script">
 		$(document).ready(function(){
 			
+			
+			
+			$(".like-btn").on("click", function(){
+			
+			
+			});
+
 			$("#logoIcon").on("click", function(){
 				location.href = "/nowgram/post/timeline-view";
 			});
