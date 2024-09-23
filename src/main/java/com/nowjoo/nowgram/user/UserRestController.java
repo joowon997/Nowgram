@@ -83,7 +83,7 @@ public class UserRestController {
 			Profil profil = userService.getProfil(user.getId());
 			// 사용자 이름 및 정보
 			if (profil != null) {
-				session.setAttribute("userId", profil.getId());
+				session.setAttribute("userId", user.getId());
 				session.setAttribute("userName", profil.getNickname());
 			}else {
 				session.setAttribute("userId", user.getId());

@@ -22,19 +22,6 @@
 		`id` = #{id}
 	</select>
 	
-	
-	<select id="findUser" parameterType="map" 
-	resultType="com.nowjoo.nowgram.user.DTO.FindDTO">
-	SELECT
-		`loginId`
-	FROM
-		`user`
-	WHERE
-		`name` = #{name}
-		AND `birthday` = #{birthday}
-		AND `phoneNumber` = #{phoneNumber}
-	</select>
-	
 	<select id="selectProfilByUserId" parameterType="int" 
 	resultType="com.nowjoo.nowgram.user.domain.Profil">
 		SELECT

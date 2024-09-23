@@ -14,4 +14,8 @@ public class TimelineDto {
 	private String imagePath;
 	
 	private String loginId;
+	
+	private int likecount;
+	
+	private boolean isLike;
 }
