@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nowjoo.nowgram.comment.domain.Comment;
-import com.nowjoo.nowgram.comment.service.CommemtService;
+import com.nowjoo.nowgram.comment.service.CommentService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -17,9 +17,9 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/nowgram/post")
 public class CommentRestController {
 	
-	private CommemtService commemtService;
+	private CommentService commemtService;
 	
-	public CommentRestController(CommemtService commemtService) {
+	public CommentRestController(CommentService commemtService) {
 		this.commemtService = commemtService;
 	}
 	

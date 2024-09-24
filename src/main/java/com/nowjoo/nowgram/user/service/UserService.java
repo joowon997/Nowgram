@@ -48,6 +48,7 @@ public class UserService {
 		
 	}
 	
+	
 	// 회원가입 기능
 	public int adduser(
 			String loginId

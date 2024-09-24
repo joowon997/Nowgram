@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.nowjoo.nowgram.comment.service.CommentService;
 import com.nowjoo.nowgram.common.FileManager;
+import com.nowjoo.nowgram.like.service.LikeService;
 import com.nowjoo.nowgram.post.domain.Post;
 import com.nowjoo.nowgram.post.dto.TimelineDto;
 import com.nowjoo.nowgram.post.repository.PostRepository;
@@ -18,12 +20,23 @@ public class PostService {
 
 	private PostRepository postRepository;
 	private UserService userService;
+	private LikeService likeService;
+	private CommentService commentService;
 	
 	public PostService(
 			PostRepository postRepository
-			, UserService userService) {
+			, UserService userService
+			, LikeService likeService
+			, CommentService commentService) {
 		this.postRepository = postRepository;
 		this.userService = userService;
+		this.likeService =likeService;
+		this.commentService=commentService;
+	}
+	
+	// 메모 삭제
+	public boolean deletePost(int postId, int userId) {
+		
 	}
 	
 	// 타임라인

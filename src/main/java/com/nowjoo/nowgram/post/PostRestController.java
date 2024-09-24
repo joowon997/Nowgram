@@ -3,6 +3,7 @@ package com.nowjoo.nowgram.post;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,16 @@ public class PostRestController {
 	public PostRestController(PostService postService) {
 		this.postService = postService;
 	}
+	
+	// 게시물 삭제
+	@DeleteMapping("/delete")
+	public Map<String, String> delectPost(
+			@RequestParam("postId") int postId
+			, HttpSession session){
+		
+		
+	}
+	
 	
 	// 게시물 작성
 	@PostMapping("/create")

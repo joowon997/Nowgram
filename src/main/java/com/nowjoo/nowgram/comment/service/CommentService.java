@@ -12,12 +12,12 @@ import com.nowjoo.nowgram.user.domain.User;
 import com.nowjoo.nowgram.user.service.UserService;
 
 @Service
-public class CommemtService {
+public class CommentService {
 
 	private CommentRepository commentRepository;
 	private UserService userService;
 	
-	public CommemtService(CommentRepository commentRepository
+	public CommentService(CommentRepository commentRepository
 							, UserService userService) {
 		this.commentRepository = commentRepository;
 		this.userService = userService;
