@@ -27,5 +27,16 @@
 <!-- 데이트 피커 -->
 <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
 <th:block layout:fragment="script"></th:block>
+<script>
+	$("#logoIcon").on("click", function(){
+		location.href = "/nowgram/post/timeline-view";
+	});
+	$("#createIcon").on("click", function(){
+		location.href = "/nowgram/post/create-view";
+	});
+	$("#profilIcon").on("click", function(){
+		location.href = "/nowgram/user/profil-view";
+	});
+</script>
 </body>
 </html>

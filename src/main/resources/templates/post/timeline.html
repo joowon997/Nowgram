@@ -32,7 +32,12 @@
 				<!-- 댓글 -->
 				<div class="mx-3 mt-2">
 					<div class="text-secondary small">댓글 00개 모두보기</div>
-					<textarea rows="2" class="form-control my-2">댓글 달기</textarea>
+					<div class="input-group my-2">
+						<textarea rows="2" class="form-control" th:id="|commentInput${post.postId}|" placeholder="댓글달기"></textarea>
+							<button type="button" class="input-group-text comment-btn" th:data-post-id="${post.postId}">게시</button>
+						</div>
+					</div>
+					
 				</div>
 				<!-- /댓글 -->
 			</div>
@@ -41,23 +46,58 @@
 		<script layout:fragment="script">
 		$(document).ready(function(){
 			
+			// 댓글 기능
+			$(".comment-btn").on("click", function() {
+				
+				// 게시글 pk
+				// 댓글 내용
+				let postId = $(this).data("post-id");
+				
+				// let contents = $(this).prev().val();
+				// #commentInput5
+				let contents = $("#commentInput" + postId).val();
+				
+				$.ajax({
+					type:"post"
+					, url:"/nowgram/post/comment/create"
+					, data:{"postId":postId, "comments":contents}
+					, success:function(data) {
+						if(data.result == "success") {
+							location.reload();
+						} else {
+							alert("댓글 작성 실패..");
+						}
+					}
+					, error:function() {
+						alert("댓글 작성에러!!");
+					}
+				});
+			});
 			
-			
+			// 좋아요 기능
 			$(".like-btn").on("click", function(){
-			
+				
+				// 게시글 PK 얻어 오기 
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"post"
+					, url:"/nowgram/post/like"
+					, data:{"postId":postId}
+					, success:function(data) {
+						if(data.result == "success") {
+							location.reload();
+						} else {
+							alert("좋아요 실패!!");
+						}
+					}
+					, error:function() {
+						alert("좋아요 에러!!");	
+					}
+				});
 			
 			});
 
-			$("#logoIcon").on("click", function(){
-				location.href = "/nowgram/post/timeline-view";
-			});
-			$("#createIcon").on("click", function(){
-				location.href = "/nowgram/post/create-view";
-			});
-			$("#profilIcon").on("click", function(){
-				location.href = "/nowgram/user/profil-view";
-			});
-			
 		});
 		</script>
 </html>

@@ -24,7 +24,7 @@ public class CommentRestController {
 	}
 	
 	// 댓글 작성
-		@PostMapping("comment/create")
+		@PostMapping("/comment/create")
 		public Map<String, String> createComment(
 				@RequestParam("postId") int postId
 				, @RequestParam("comments") String comments

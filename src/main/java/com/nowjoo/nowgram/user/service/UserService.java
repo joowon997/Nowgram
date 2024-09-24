@@ -1,7 +1,6 @@
 package com.nowjoo.nowgram.user.service;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -9,8 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.nowjoo.nowgram.common.FileManager;
 import com.nowjoo.nowgram.common.hash.HashingEncoder;
-import com.nowjoo.nowgram.common.hash.MD5HashingEncoder;
-import com.nowjoo.nowgram.user.DTO.FindDTO;
 import com.nowjoo.nowgram.user.domain.Profil;
 import com.nowjoo.nowgram.user.domain.User;
 import com.nowjoo.nowgram.user.repository.UserRepository;

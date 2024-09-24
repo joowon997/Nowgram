@@ -27,6 +27,7 @@ public class UserController {
 
 	@GetMapping("/profil-view")
 	public String userProfil() {
+		
 		return"user/profil";
 	}
 	
