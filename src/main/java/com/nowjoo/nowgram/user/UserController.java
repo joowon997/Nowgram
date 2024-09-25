@@ -24,12 +24,6 @@ public class UserController {
 	public String inputfind() {
 		return"user/find";
 	}
-
-	@GetMapping("/profil-view")
-	public String userProfil() {
-		
-		return"user/profil";
-	}
 	
 	// 로그아웃 기능
 	@GetMapping("/logout")

@@ -23,6 +23,10 @@ public class CommentService {
 		this.userService = userService;
 	}
 	
+	public void deleteCommentByPostId(int PostId){
+		commentRepository.deleteByPostId(PostId);
+	}
+	
 	// 댓글 추가 기능
 	public Comment addComent(int postId, int userId, String comments) {
 		

@@ -2,6 +2,7 @@ package com.nowjoo.nowgram.post.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,11 +35,6 @@ public class PostService {
 		this.userService = userService;
 		this.likeService =likeService;
 		this.commentService=commentService;
-	}
-	
-	// 메모 삭제
-	public boolean deletePost(int postId, int userId) {
-		
 	}
 	
 	// 타임라인
@@ -89,4 +85,27 @@ public class PostService {
 		
 		return result;
 	}
+	
+	// 메모 삭제
+	public boolean deletePost(int postId, int userId) {
+		
+		Optional<Post> optionalPost = postRepository.findByIdAndUserId(postId, userId);
+		Post post = optionalPost.orElse(null);
+		
+		
+		if (post != null) {
+			// 좋아요 삭제
+			likeService.deleteLikeByPostId(postId);
+			// 댓글 삭제
+			commentService.deleteCommentByPostId(postId);
+			
+			FileManager.removeFile(post.getImagePath());
+			postRepository.delete(post);
+			return true;
+		}else {
+			return false;
+		}
+	
+	}
+	
 }

@@ -1,5 +1,7 @@
 package com.nowjoo.nowgram.like.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.nowjoo.nowgram.like.domain.Like;
@@ -13,6 +15,25 @@ public class LikeService {
 	public LikeService(LikeRepository likeRepository) {
 		this.likeRepository = likeRepository;
 	}
+	
+	// 게시물 삭제시 좋아요 삭제
+	public void deleteLikeByPostId(int postId) {
+		likeRepository.deleteByPostId(postId);
+	}
+	
+	// 좋아요 취소
+	public boolean deleteLike(int postId, int userId) {
+		Optional<Like> optionalLike = likeRepository.findByUserIdAndPostId(userId, postId);
+		Like like = optionalLike.orElse(null);
+		
+		if (like != null) {
+			likeRepository.delete(like);
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	
 	// 좋아요 추가
 	public Like addLike(int postId, int userId) {
@@ -37,7 +58,7 @@ public class LikeService {
 	public boolean isLikeByUserIdAndPostId(int userId, int postId){
 		int count = likeRepository.countByUserIdAndPostId(userId, postId);
 		
-		if (count == 0) {
+		if (count != 0) {
 			return true;
 		}else {
 			return false;

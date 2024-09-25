@@ -30,8 +30,17 @@ public class PostRestController {
 	public Map<String, String> delectPost(
 			@RequestParam("postId") int postId
 			, HttpSession session){
+
+		int userId = (Integer)session.getAttribute("userId");
 		
+		Map<String, String> resultMap = new HashMap<>();
 		
+		if(postService.deletePost(postId, userId)) {
+			resultMap.put("result", "success");
+		}else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
 	}
 	
 	

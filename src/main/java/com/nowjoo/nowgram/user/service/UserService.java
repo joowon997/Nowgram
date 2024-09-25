@@ -26,14 +26,6 @@ public class UserService {
 		this.encoder = encoder;
 	}
 	
-	//프로필 추가 기능
-	public int addProfil(int userId, String nickname, MultipartFile file) {
-		
-		String urlPath = FileManager.saveFile(userId, file);
-	
-		return userRepository.insertProfil(userId, nickname, urlPath);
-	}
-	
 	// 프로필 조회
 	public Profil getProfil(int userId) {
 		return userRepository.selectProfilByUserId(userId);

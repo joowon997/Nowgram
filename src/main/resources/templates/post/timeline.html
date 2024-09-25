@@ -3,51 +3,86 @@
 		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		layout:decorate="~{layouts/default}">
 		
-		<section layout:fragment="contents" class="d-flex justify-content-center mb-3" th:each="post:${timeline}">
-			<div class="timeline border">
-				<!-- 게시자 -->
-				<div class="d-flex justify-content-between align-items-center my-1 mx-3">
-					<div class="d-flex align-items-center">
-						<img class="rounded-circle" width="40px" height="40px" alt="프로필 사진" src="https://cdn.pixabay.com/photo/2024/06/17/14/58/school-8835808_640.jpg">
-						<span class="nickname ml-2" th:text="${post.loginId}">user</span>
-					</div>
-					<a class="more font-weight-bold text-dark">···</a>
-				</div>
-				<!-- /게시자 -->
-				<!-- 게시물 -->
-				<div class="d-flex justify-content-center">
-					<img width="600px" height="400px" alt="게시물이미지" th:src="${post.imagePath}" src="https://cdn.pixabay.com/photo/2024/08/18/14/34/folkstone-8978132_1280.jpg">
-				</div>
-				<div class="contents mx-3 mt-2">
-					<h3>
-						<i th:unless="${post.isLike}" class="bi bi-heart like-btn" th:data-post-id="${post.postId}"></i>
-						<i th:if="${post.isLike}" class="bi bi-heart-fill text-danger"></i>
-						<i class="bi bi-chat-left"></i>
-					</h3>
-					<div th:text="|좋아요 ${post.likeCount}개|">좋아요 00개</div>
-					<span class="font-weight-bold mr-4" th:text="${post.loginId}">user1</span>
-					<span th:text="${post.contents}">게시물 내용</span>
-				</div>
-				<!-- /게시물 -->
-				<!-- 댓글 -->
-				<div class="mx-3 mt-2">
-					<div class="text-secondary small">댓글 00개</div>
-					<div th:each="comment:${post.commentList}">
-						<b th:text="${comment.loginId}">user</b> <span th:text="${comment.contents}">댓글내용</span> 
-					</div>
-					<div class="input-group my-2">
-						<textarea rows="2" class="form-control" th:id="|commentInput${post.postId}|" placeholder="댓글달기"></textarea>
-							<button type="button" class="input-group-text comment-btn" th:data-post-id="${post.postId}">게시</button>
+		<section layout:fragment="contents">
+			<div class="d-flex justify-content-center mb-3" th:each="post:${timeline}">
+				<div class="timeline border">
+					<!-- 게시자 -->
+					<div class="d-flex justify-content-between align-items-center my-1 mx-3">
+						<div class="d-flex align-items-center">
+							<img class="rounded-circle" width="40px" height="40px" alt="프로필 사진" src="https://cdn.pixabay.com/photo/2024/06/17/14/58/school-8835808_640.jpg">
+							<span class="nickname ml-2" th:text="${post.loginId}">user</span>
 						</div>
+						<span data-toggle="modal" data-target="#moreModal" th:if="${post.userId == session.userId}" class="more font-weight-bold text-dark more-btn" th:data-post-id="${post.postId}">···</span>
 					</div>
-					
-				</div>
-				<!-- /댓글 -->
+					<!-- /게시자 -->
+					<!-- 게시물 -->
+					<div class="d-flex justify-content-center">
+						<img width="600px" height="400px" alt="게시물이미지" th:src="${post.imagePath}" src="https://cdn.pixabay.com/photo/2024/08/18/14/34/folkstone-8978132_1280.jpg">
+					</div>
+					<div class="contents mx-3 mt-2">
+						<h3>
+							<i th:unless="${post.isLike}" class="bi bi-heart like-btn"  th:data-post-id="${post.postId}"></i>
+							<i th:if="${post.isLike}" class="bi bi-heart-fill text-danger unlike-btn" th:data-post-id="${post.postId}"></i>
+							<i class="bi bi-chat-left"></i>
+						</h3>
+						<div th:text="|좋아요 ${post.likeCount}개|">좋아요 00개</div>
+						<span class="font-weight-bold mr-4" th:text="${post.loginId}">user1</span>
+						<span th:text="${post.contents}">게시물 내용</span>
+					</div>
+					<!-- /게시물 -->
+					<!-- 댓글 -->
+					<div class="mx-3 mt-2">
+						<div class="text-secondary small">댓글 00개</div>
+						<div th:each="comment:${post.commentList}">
+							<b th:text="${comment.loginId}">user</b> <span th:text="${comment.contents}">댓글내용</span> 
+						</div>
+						<div class="input-group my-2">
+							<textarea rows="2" class="form-control" th:id="|commentInput${post.postId}|" placeholder="댓글달기"></textarea>
+								<button type="button" class="input-group-text comment-btn" th:data-post-id="${post.postId}">게시</button>
+							</div>
+						</div>
+					<!-- /댓글 -->
+					</div>
 			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="moreModal">
+			  <div class="modal-dialog modal-dialog-centered">
+			    <div class="modal-content">
+			      <div class="modal-body text-center modal-delete">
+			        <a href="#" >삭제하기</a>
+			      </div>
+			    </div>
+		      </div>
+		 	</div>
 		</section>
+		
 		
 		<script layout:fragment="script">
 		$(document).ready(function(){
+			
+			// 게시글 삭제
+			$(".modal-delete").on("click", function(){
+				
+				let postId = $(".more-btn").data("post-id");
+				/*
+				$.ajax({
+					type:"delete"
+					, url:"/nowgram/post/delete"
+					, data:{"postId":postId}
+					, success:function(data){
+						if(data.result == "success"){
+							location.reload();
+						}else{
+							alert("삭제 실패");
+						}
+					}
+					, error:function(){
+						alert("삭제 오류");
+					}			
+				});	
+				*/
+				alert(postId);
+			});
 			
 			// 댓글 기능
 			$(".comment-btn").on("click", function() {
@@ -75,6 +110,30 @@
 						alert("댓글 작성에러!!");
 					}
 				});
+			});
+			
+			// 좋아요 취소 기능
+			$(".unlike-btn").on("click", function(){
+				
+				// 게시글 PK 얻어 오기 
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"delete"
+					, url:"/nowgram/post/unlike"
+					, data:{"postId":postId}
+					, success:function(data) {
+						if(data.result == "success") {
+							location.reload();
+						} else {
+							alert("좋아요 취소실패!!");
+						}
+					}
+					, error:function() {
+						alert("좋아요 취소에러!!");	
+					}
+				});
+			
 			});
 			
 			// 좋아요 기능
