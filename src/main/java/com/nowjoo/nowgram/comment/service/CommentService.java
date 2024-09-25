@@ -37,6 +37,7 @@ public class CommentService {
 		return result;
 	}
 	
+	// 댓글 조회 기능
 	public List<CommentView> getCommentListByPostId(int postId) {
 		
 		List<Comment> commentList = commentRepository.findByPostId(postId);

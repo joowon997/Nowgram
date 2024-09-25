@@ -1,5 +1,9 @@
 package com.nowjoo.nowgram.post.dto;
 
+import java.util.List;
+
+import com.nowjoo.nowgram.comment.dto.CommentView;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,7 +19,9 @@ public class TimelineDto {
 	
 	private String loginId;
 	
-	private int likecount;
+	private int likeCount;
 	
 	private boolean isLike;
+	
+	private List<CommentView> commentList;
 }

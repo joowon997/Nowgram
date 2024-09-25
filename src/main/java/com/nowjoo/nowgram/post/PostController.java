@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.nowjoo.nowgram.post.Service.PostService;
 import com.nowjoo.nowgram.post.dto.TimelineDto;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/nowgram/post")
 public class PostController {
@@ -22,9 +24,12 @@ public class PostController {
 	
 	@GetMapping("/timeline-view")
 	public String timelineView(
-		Model model) {
+		Model model
+		, HttpSession session) {
 		
-		List<TimelineDto> timelineList = postService.getTimelineList();
+		int userId = (Integer)session.getAttribute("userId");
+		
+		List<TimelineDto> timelineList = postService.getTimelineList(userId);
 		
 		model.addAttribute("timeline", timelineList);
 		
