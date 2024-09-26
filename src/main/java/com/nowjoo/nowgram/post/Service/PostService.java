@@ -13,6 +13,7 @@ import com.nowjoo.nowgram.comment.service.CommentService;
 import com.nowjoo.nowgram.common.FileManager;
 import com.nowjoo.nowgram.like.service.LikeService;
 import com.nowjoo.nowgram.post.domain.Post;
+import com.nowjoo.nowgram.post.dto.ProfilPostDTO;
 import com.nowjoo.nowgram.post.dto.TimelineDto;
 import com.nowjoo.nowgram.post.repository.PostRepository;
 import com.nowjoo.nowgram.user.domain.User;
@@ -106,6 +107,26 @@ public class PostService {
 			return false;
 		}
 	
+	}
+	
+	// 프로필 정보 전달
+	public List<ProfilPostDTO> getProfilPost(int userId) {
+		List<Post> postList = postRepository.findByUserId(userId);
+		
+		List<ProfilPostDTO> profilPostDTOList = new ArrayList<>();
+		for(Post post:postList) {
+			ProfilPostDTO profilPostDTO = ProfilPostDTO.builder()
+											.postId(post.getId())
+											.postImage(post.getImagePath())
+											.build();
+			profilPostDTOList.add(profilPostDTO);
+		}
+		return profilPostDTOList;
+	}
+	
+	public int getPostCount(int userId) {
+		
+		return postRepository.countByUserId(userId);
 	}
 	
 }

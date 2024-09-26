@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layouts/default}">
+		
+		<section layout:fragment="contents" class="d-flex justify-content-center">
+			<div>
+				<!-- 사용자 프로필 -->
+				<div class="timeline border d-flex justify-content-between align-items-center">
+					<div class="m-3 d-flex justify-content-between align-items-center">
+						<img class="rounded-circle mr-3" width="120px" height="120px" id="localIamge"
+						 alt="선택된 사진" src="https://cdn.pixabay.com/photo/2016/08/31/11/54/icon-1633249_1280.png">
+						<input type="file" class="d-none" id="inputImage">
+						<div class="d-flex align-items-end">
+							<div></div>
+							<span th:unless="${profil.isProfil}" class="display-4" id="nickname" th:text="${profil.loginId}">user</span>
+							<span th:if="${profil.isProfil}" class="display-4" id="nickname" th:text="${profil.nikename}">nickname</span>
+							<input class="d-none" placeholder="User" id="inputNickname">
+							<h4>
+								<i class="bi bi-check-lg d-none" id="completeBtn"></i>
+								<i class="bi bi-pencil-fill" id="changeBtn"></i>
+								<i class="bi bi-pencil-fill d-none" id="cancleChangeBtn"></i>
+							</h4>
+						</div>
+						<input class="nickname d-none" style="border: none; background: transparent;" placeholder="user">
+					</div>
+					<div class="mr-5 pr-5">
+						<div class="d-flex justify-content-center">게시물</div>
+						<div class="d-flex justify-content-center">00개</div>
+					</div>
+				</div>			
+				<!-- /사용자 프로필 -->
+				<!-- 사용자의 게시물-->
+				<div class="mt-4 pt-2 d-flex justify-content-between">
+					<img class="border" width="190px" height="190px" alt="게시물 1" src="https://cdn.pixabay.com/photo/2024/09/05/17/31/moutains-9025523_640.jpg">
+					<img class="border" width="190px" height="190px" alt="게시물 1" src="https://cdn.pixabay.com/photo/2024/09/05/17/31/moutains-9025523_640.jpg">
+					<img class="border" width="190px" height="190px" alt="게시물 1" src="https://cdn.pixabay.com/photo/2024/09/05/17/31/moutains-9025523_640.jpg">
+				</div>
+				<!-- /사용자의 게시물-->
+			</div>
+		</section>
+		
+		<script layout:fragment="script">
+		$(document).ready(function(){
+			
+			$(".changeImage").on("click", function() {
+				$("#inputImage").click();
+			});
+			
+			// 닉네임 변경화면 취소
+			$("#cancleChangeBtn").on("click", function(){
+				$("#nickname").removeClass('d-none');
+				$("#changeBtn").removeClass('d-none');
+				$("#localIamge").removeClass('changeImage');
+
+				$("#inputNickname").addClass('d-none');
+				$("#completeBtn").addClass('d-none');
+				$("#cancleChangeBtn").addClass('d-none');
+			});
+			// 닉네임 변경화면 요청
+			$("#changeBtn").on("click", function(){
+				$("#nickname").addClass('d-none');
+				$("#changeBtn").addClass('d-none');
+				$("#localIamge").addClass('changeImage');
+
+				$("#inputNickname").removeClass('d-none');
+				$("#completeBtn").removeClass('d-none');
+				$("#cancleChangeBtn").removeClass('d-none');
+			});
+			
+			
+		});
+		</script>
+		
+</html>

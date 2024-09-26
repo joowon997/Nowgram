@@ -48,8 +48,8 @@
 			<div class="modal fade" id="moreModal">
 			  <div class="modal-dialog modal-dialog-centered">
 			    <div class="modal-content">
-			      <div class="modal-body text-center modal-delete">
-			        <a href="#" >삭제하기</a>
+			      <div class="modal-body text-center">
+			        <a href="#" id="deleteBtn">삭제하기</a>
 			      </div>
 			    </div>
 		      </div>
@@ -60,11 +60,9 @@
 		<script layout:fragment="script">
 		$(document).ready(function(){
 			
-			// 게시글 삭제
-			$(".modal-delete").on("click", function(){
-				
-				let postId = $(".more-btn").data("post-id");
-				/*
+			$("#deleteBtn").on("click",function(){
+				let postId = $(this).data("post-id");
+
 				$.ajax({
 					type:"delete"
 					, url:"/nowgram/post/delete"
@@ -80,8 +78,14 @@
 						alert("삭제 오류");
 					}			
 				});	
-				*/
-				alert(postId);
+			});
+			
+			// 모달에 값 전달
+			$(".more-btn").on("click", function(){
+				
+				let postId = $(this).data("post-id");
+				
+				$("#deleteBtn").data("post-id", postId);
 			});
 			
 			// 댓글 기능

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.nowjoo.nowgram.profil.service.ProfilService;
 import com.nowjoo.nowgram.user.domain.Profil;
 import com.nowjoo.nowgram.user.domain.User;
 import com.nowjoo.nowgram.user.service.UserService;
@@ -23,9 +24,13 @@ import jakarta.servlet.http.HttpSession;
 public class UserRestController {
 
 	private UserService userService;
+	private ProfilService profilService;
 	
-	public UserRestController(UserService userService) {
+	public UserRestController(
+			UserService userService
+			, ProfilService profilService) {
 		this.userService = userService;
+		this.profilService = profilService;
 	} 
 	
 	// 아이디 찾기 기능
@@ -51,18 +56,15 @@ public class UserRestController {
 		
 		User user = userService.getUser(loginId, password);
 		
-		
 		Map<String, String> resultMap = new HashMap<>();
-		
 		
 		if(user != null) {
 			resultMap.put("result", "success");
 			
-			Profil profil = userService.getProfil(user.getId());
 			// 사용자 이름 및 정보
-			if (profil != null) {
+			if (profilService.isProfil(user.getId())) {
 				session.setAttribute("userId", user.getId());
-				session.setAttribute("userName", profil.getNickname());
+				session.setAttribute("userName", user.getLoginId() );
 			}else {
 				session.setAttribute("userId", user.getId());
 				session.setAttribute("userName", user.getLoginId());
